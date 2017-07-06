@@ -1,0 +1,543 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Use Case Diagram - Main Use Case Diagram</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		WorldWindEarth	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_HheaOzqGAqAC28XP.html" class="PageParentTitle">Use Case Model : Model</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Use Case Diagram - Main Use Case Diagram		</span>
+<a onclick="javascript: showVpLink('WorldWind Earth.vpp://diagram/ANnOxTqGAqAC2xDA', 'Main Use Case Diagram\nWorldWind Earth.vpp://diagram/ANnOxTqGAqAC2xDA', 'Main Use Case Diagram', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|93.0|2.0|368.0|516.0|System_Ac3OxTqGAqAC2xHi.html|System_Ac3OxTqGAqAC2xHi.html|js3OxTqGAqAC2xGs" id="optionjs3OxTqGAqAC2xGs">WorldWindEarth : System</option>
+<option value="shape|9.0|224.0|30.0|60.0|Actor_hFAuxTqGAqAC2xI3.html|Actor_hFAuxTqGAqAC2xI3.html|BFAuxTqGAqAC2xI2" id="optionBFAuxTqGAqAC2xI2">User : Actor</option>
+<option value="shape|515.0|210.0|66.0|74.0|Actor_bHQuxTqGAqAC2xJI.html|Actor_bHQuxTqGAqAC2xJI.html|bHQuxTqGAqAC2xJH" id="optionbHQuxTqGAqAC2xJH">WWSK : Actor</option>
+<option value="shape|223.0|23.0|86.0|40.0|UseCase_SiAv8zqGAqAC2z1i.html|UseCase_SiAv8zqGAqAC2z1i.html|iiAv8zqGAqAC2z1h" id="optioniiAv8zqGAqAC2z1h">Manage Layers : Use Case</option>
+<option value="shape|217.0|87.0|99.0|40.0|UseCase__64v8zqGAqAC2z3G.html|UseCase__64v8zqGAqAC2z3G.html|.64v8zqGAqAC2z3F" id="option.64v8zqGAqAC2z3F">Connect to Server : Use Case</option>
+<option value="shape|221.0|163.0|91.0|40.0|UseCase_qYwv8zqGAqAC2z2J.html|UseCase_qYwv8zqGAqAC2z2J.html|KYwv8zqGAqAC2z2I" id="optionKYwv8zqGAqAC2z2I">Manage Servers : Use Case</option>
+<option value="shape|204.0|227.0|121.0|40.0|UseCase_pJSv8zqGAqAC2z4N.html|UseCase_pJSv8zqGAqAC2z4N.html|JJSv8zqGAqAC2z4M" id="optionJJSv8zqGAqAC2z4M">Define Area of Interest : Use Case</option>
+<option value="shape|201.0|308.0|131.0|40.0|UseCase_iFZv8zqGAqAC2z5e.html|UseCase_iFZv8zqGAqAC2z5e.html|iFZv8zqGAqAC2z5d" id="optioniFZv8zqGAqAC2z5d">Request Coverage : Use Case</option>
+<option value="shape|226.0|379.0|86.0|40.0|UseCase_us_v8zqGAqAC2z7u.html|UseCase_us_v8zqGAqAC2z7u.html|us_v8zqGAqAC2z7t" id="optionus_v8zqGAqAC2z7t">Load Coverage : Use Case</option>
+<option value="shape|217.0|460.0|105.0|40.0|UseCase_FgKf8zqGAqAC2z9Z.html|UseCase_FgKf8zqGAqAC2z9Z.html|FgKf8zqGAqAC2z9Y" id="optionFgKf8zqGAqAC2z9Y">Visualize Coverage : Use Case</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Main_Use_Case_Diagram.png" usemap="#diagram_map" class="Image" width="585" height="522"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="231.6684, 63.0, 39.0, 229.74889, 39.0, 229.74889, 39.0, 248.53812, 253.37823, 63.0" coords2="231.6684, 63.0, 39.0, 229.74889, 39.0, 229.74889, 39.0, 248.53812, 253.37823, 63.0" shape="poly" alt=":Association" id="areadiagram_map_a6Av8zqGAqAC2z11" href="Association_dKAv8zqGAqAC2z1w.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="221.0, 188.39903, 39.0, 241.77403, 39.0, 256.65384, 39.0, 256.65384, 221.95082, 203.0, 221.0, 203.0, 221.0, 188.39903" coords2="221.0, 188.39903, 39.0, 241.77403, 39.0, 256.65384, 39.0, 256.65384, 221.95082, 203.0, 221.0, 203.0, 221.0, 188.39903" shape="poly" alt=":Association" id="areadiagram_map_SMwv8zqGAqAC2z2c" href="Association_Nkwv8zqGAqAC2z2X.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="219.0229, 127.0, 39.0, 236.68837, 39.0, 236.68837, 39.0, 252.56279, 245.07634, 127.0" coords2="219.0229, 127.0, 39.0, 236.68837, 39.0, 236.68837, 39.0, 252.56279, 245.07634, 127.0" shape="poly" alt=":Association" id="areadiagram_map_cu4v8zqGAqAC2z3Z" href="Association_KW4v8zqGAqAC2z3U.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="316.0, 123.77966, 316.0, 127.0, 291.10345, 127.0, 515.0, 237.05084, 515.0, 221.59322, 316.0, 123.77966" coords2="316.0, 123.77966, 316.0, 127.0, 291.10345, 127.0, 515.0, 237.05084, 515.0, 221.59322, 316.0, 123.77966" shape="poly" alt=":Association" id="areadiagram_map_6l0v8zqGAqAC2z32" href="Association_VZ0v8zqGAqAC2z3x.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="204.0, 242.29411, 39.0, 246.70589, 39.0, 246.70589, 39.0, 260.70587, 39.0, 260.70587, 204.0, 256.29413, 204.0, 256.29413, 204.0, 242.29411" coords2="204.0, 242.29411, 39.0, 246.70589, 39.0, 246.70589, 39.0, 260.70587, 39.0, 260.70587, 204.0, 256.29413, 204.0, 256.29413, 204.0, 242.29411" shape="poly" alt=":Association" id="areadiagram_map_qVSv8zqGAqAC2z4g" href="Association_0FSv8zqGAqAC2z4b.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="39.0, 250.73134, 39.0, 265.64178, 39.0, 265.64178, 201.0, 314.80597, 201.0, 314.80597, 201.0, 308.0, 227.70493, 308.0, 39.0, 250.73134" coords2="39.0, 250.73134, 39.0, 265.64178, 39.0, 265.64178, 201.0, 314.80597, 201.0, 314.80597, 201.0, 308.0, 227.70493, 308.0, 39.0, 250.73134" shape="poly" alt=":Association" id="areadiagram_map_odZv8zqGAqAC2z5x" href="Association_ANZv8zqGAqAC2z5s.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="515.0, 248.00455, 305.49207, 308.0, 332.0, 308.0, 332.0, 315.52054, 332.0, 315.52054, 515.0, 262.8767, 515.0, 262.8767, 515.0, 248.00455" coords2="515.0, 248.00455, 305.49207, 308.0, 332.0, 308.0, 332.0, 315.52054, 332.0, 315.52054, 515.0, 262.8767, 515.0, 262.8767, 515.0, 248.00455" shape="poly" alt=":Association" id="areadiagram_map_kntv8zqGAqAC2z6b" href="Association_qbtv8zqGAqAC2z6W.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="258.1746, 267.0, 258.8254, 308.0, 272.8254, 308.0, 272.1746, 267.0" coords2="258.1746, 267.0, 258.8254, 308.0, 272.8254, 308.0, 272.1746, 267.0" shape="poly" alt=":Include" id="areadiagram_map_tizv8zqGAqAC2z6s" href="Include_jczv8zqGAqAC2z6r.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="39.0, 254.97728, 39.0, 270.7409, 39.0, 270.7409, 226.0, 382.0909, 226.0, 382.0909, 226.0, 379.0, 247.28244, 379.0, 39.0, 254.97728" coords2="39.0, 254.97728, 39.0, 270.7409, 39.0, 270.7409, 226.0, 382.0909, 226.0, 382.0909, 226.0, 379.0, 247.28244, 379.0, 39.0, 254.97728" shape="poly" alt=":Association" id="areadiagram_map_ey_v8zqGAqAC2z8B" href="Association_zC_v8zqGAqAC2z78.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="515.0, 257.21518, 287.73227, 379.0, 312.0, 379.0, 312.0, 381.6751, 515.0, 272.8945, 515.0, 257.21518" coords2="515.0, 257.21518, 287.73227, 379.0, 312.0, 379.0, 312.0, 381.6751, 515.0, 272.8945, 515.0, 257.21518" shape="poly" alt=":Association" id="areadiagram_map_eDwf8zqGAqAC2z8j" href="Association_Ptwf8zqGAqAC2z8e.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="39.0, 257.8482, 39.0, 257.8482, 39.0, 257.8482, 39.0, 257.8482, 39.0, 257.8482, 39.0, 277.0893, 39.0, 277.0893, 236.93237, 460.0, 257.75363, 460.0, 39.0, 257.8482" coords2="39.0, 257.8482, 39.0, 257.8482, 39.0, 257.8482, 39.0, 257.8482, 39.0, 257.8482, 39.0, 277.0893, 39.0, 277.0893, 236.93237, 460.0, 257.75363, 460.0, 39.0, 257.8482" shape="poly" alt=":Association" id="areadiagram_map_34Kf8zqGAqAC2z9s" href="Association_AoKf8zqGAqAC2z9n.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="262.0, 419.0, 262.0, 460.0, 276.0, 460.0, 276.0, 419.0" coords2="262.0, 419.0, 262.0, 460.0, 276.0, 460.0, 276.0, 419.0" shape="poly" alt=":Include" id="areadiagram_map_TV2f8zqGAqAC2z.d" href="Include_MF2f8zqGAqAC2z_c.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="259.0, 127.0, 259.0, 163.0, 273.0, 163.0, 273.0, 127.0" coords2="259.0, 127.0, 259.0, 163.0, 273.0, 163.0, 273.0, 127.0" shape="poly" alt=":Include" id="areadiagram_map_0fLYCzqGAqAC20B7" href="Include_13LYCzqGAqAC20B6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      In this use case, a coverage is rendered on the globe as an analytical 
+      layer(s), providing the user with the ability to control the color ramps 
+      and elevations of the coverage bands.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="217, 460, 322, 500" coords2="217, 460, 322, 500" shape="rect" alt="Visualize Coverage:Use Case" id="areadiagram_map_FgKf8zqGAqAC2z9Y" href="UseCase_FgKf8zqGAqAC2z9Z.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      In this use case, a WCS coverage is retrieved from the WWSK server or 
+      loaded from the persistent store.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="226, 379, 312, 419" coords2="226, 379, 312, 419" shape="rect" alt="Load Coverage:Use Case" id="areadiagram_map_us_v8zqGAqAC2z7t" href="UseCase_us_v8zqGAqAC2z7u.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      In this use case, the user makes a request for a WCS coverage which 
+      entails selecting an available coverage, defining the area-of-interest, 
+      and specifying the level of detail, plus any coverage specific 
+      parameters. &amp;nbsp;This request is sent to the server for processing.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="201, 308, 332, 348" coords2="201, 308, 332, 348" shape="rect" alt="Request Coverage:Use Case" id="areadiagram_map_iFZv8zqGAqAC2z5d" href="UseCase_iFZv8zqGAqAC2z5e.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      In this use case, the user defines an area-of-interest on the globe, 
+      i.e., a sector, which in turn defines the bounding box for subsequent 
+      coverage requests.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="204, 227, 325, 267" coords2="204, 227, 325, 267" shape="rect" alt="Define Area of Interest:Use Case" id="areadiagram_map_JJSv8zqGAqAC2z4M" href="UseCase_pJSv8zqGAqAC2z4N.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      In this use case, the user defines new WWSK connection or opens an 
+      existing connection.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="217, 87, 316, 127" coords2="217, 87, 316, 127" shape="rect" alt="Connect to Server:Use Case" id="areadiagram_map_.64v8zqGAqAC2z3F" href="UseCase__64v8zqGAqAC2z3G.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      In this use case, the user manages the server connections that provide 
+      maps and data to the client.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="221, 163, 312, 203" coords2="221, 163, 312, 203" shape="rect" alt="Manage Servers:Use Case" id="areadiagram_map_KYwv8zqGAqAC2z2I" href="UseCase_qYwv8zqGAqAC2z2J.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      In this use case, the user manages the map/imagery layers that are shown 
+      on the globe.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="223, 23, 309, 63" coords2="223, 23, 309, 63" shape="rect" alt="Manage Layers:Use Case" id="areadiagram_map_iiAv8zqGAqAC2z1h" href="UseCase_SiAv8zqGAqAC2z1i.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      This actor is a WorldWindServerKit (WWSK) GeoServer instance.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="515, 210, 581, 284" coords2="515, 210, 581, 284" shape="rect" alt="WWSK:Actor" id="areadiagram_map_bHQuxTqGAqAC2xJH" href="Actor_bHQuxTqGAqAC2xJI.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      This actor is a web-browser user.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="9, 224, 39, 284" coords2="9, 224, 39, 284" shape="rect" alt="User:Actor" id="areadiagram_map_BFAuxTqGAqAC2xI2" href="Actor_hFAuxTqGAqAC2xI3.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      A WebWorldWind client with an on-screen layer manager and server manager 
+      capable of rendering user-defined analytical layers.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="93, 2, 461, 518" coords2="93, 2, 461, 518" shape="rect" alt="WorldWindEarth:System" id="areadiagram_map_js3OxTqGAqAC2xGs" href="System_Ac3OxTqGAqAC2xHi.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/System.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/System.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="System_Ac3OxTqGAqAC2xHi.html" class="ItemLink">WorldWindEarth : System</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      A WebWorldWind client with an on-screen layer manager and server manager 
+      capable of rendering user-defined analytical layers.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_hFAuxTqGAqAC2xI3.html" class="ItemLink">User : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      This actor is a web-browser user.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_bHQuxTqGAqAC2xJI.html" class="ItemLink">WWSK : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      This actor is a WorldWindServerKit (WWSK) GeoServer instance.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_SiAv8zqGAqAC2z1i.html" class="ItemLink">Manage Layers : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      In this use case, the user manages the map/imagery layers that are shown 
+      on the globe.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase__64v8zqGAqAC2z3G.html" class="ItemLink">Connect to Server : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      In this use case, the user defines new WWSK connection or opens an 
+      existing connection.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_qYwv8zqGAqAC2z2J.html" class="ItemLink">Manage Servers : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      In this use case, the user manages the server connections that provide 
+      maps and data to the client.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_pJSv8zqGAqAC2z4N.html" class="ItemLink">Define Area of Interest : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      In this use case, the user defines an area-of-interest on the globe, 
+      i.e., a sector, which in turn defines the bounding box for subsequent 
+      coverage requests.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_iFZv8zqGAqAC2z5e.html" class="ItemLink">Request Coverage : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      In this use case, the user makes a request for a WCS coverage which 
+      entails selecting an available coverage, defining the area-of-interest, 
+      and specifying the level of detail, plus any coverage specific 
+      parameters. &nbsp;This request is sent to the server for processing.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_us_v8zqGAqAC2z7u.html" class="ItemLink">Load Coverage : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      In this use case, a WCS coverage is retrieved from the WWSK server or 
+      loaded from the persistent store.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_FgKf8zqGAqAC2z9Z.html" class="ItemLink">Visualize Coverage : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:11px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-top:0pt;margin-left:0pt;margin-right:0pt;">
+      In this use case, a coverage is rendered on the globe as an analytical 
+      layer(s), providing the user with the ability to control the color ramps 
+      and elevations of the coverage bands.
+    </p>
+  </body></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		WorldWindEarth	</div>
+</body>
+</html>
